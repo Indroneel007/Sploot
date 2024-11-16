@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { API_URL } from "../constants";
 import axios from "axios";
 
 const BlogDetail = () => {
@@ -11,7 +12,7 @@ const BlogDetail = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/blogs/${id}`); // Fetch blog details from the backend
+        const response = await axios.get(`${API_URL}/api/blogs/${id}`); // Fetch blog details from the backend
         setBlog(response.data);
         setLoading(false);
       } catch (err) {
@@ -29,7 +30,7 @@ const BlogDetail = () => {
   return (
     <div className="p-8 max-w-3xl mx-auto">
     <img
-        src={"http://localhost:5000" + blog.imageURL}
+        src={API_URL + blog.imageURL}
         alt={blog.title}
         className="w-full h-48 object-cover"
       />

@@ -3,6 +3,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../constants';
 
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
@@ -44,7 +45,7 @@ export default authSlice.reducer;
 export const loginUser = (email, password) => async (dispatch) => {
   dispatch(loginStart());
   try {
-    const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+    const response = await axios.post(`${API_URL}/api/auth/login`, { email, password });
 
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('user', JSON.stringify(response.data.user));

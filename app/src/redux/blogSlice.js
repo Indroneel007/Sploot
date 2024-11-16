@@ -1,6 +1,7 @@
 // src/redux/blogSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../constants";
 
 const initialState = {
   items: [], // Array to hold blogs
@@ -42,7 +43,7 @@ export const createBlog = (blogData, token) => async (dispatch) => {
     formData.append("image", blogData.image);
 
     // Make the POST request to create the blog
-    const response = await axios.post("http://localhost:5000/api/blogs", formData, {
+    const response = await axios.post(`${API_URL}/api/blogs`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
@@ -61,7 +62,7 @@ export const createBlog = (blogData, token) => async (dispatch) => {
 
 export const fetchBlogs = (token) => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:5000/api/blogs", {
+    const response = await axios.get(`${API_URL}/api/blogs`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -76,7 +77,7 @@ export const fetchBlogs = (token) => async (dispatch) => {
 export const searchBlogs = (token, title, category) => async (dispatch) => {
   try {
     console.log('searching')
-    const response = await axios.get("http://localhost:5000/api/blogs/search", {
+    const response = await axios.get(`${API_URL}/api/blogs/search`, {
       params: {
         title,
         category

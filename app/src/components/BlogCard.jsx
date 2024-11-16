@@ -1,12 +1,12 @@
-// src/BlogCard.js
 import React from "react";
 import { Link } from "react-router-dom";
+import { API_URL } from "../constants";
 
 function BlogCard({ blog }) {
   return (
     <div className="bg-white rounded-lg shadow-xl overflow-hidden">
       <img
-        src={"http://localhost:5000" + blog.imageURL}
+        src={API_URL + blog.imageURL}
         alt={blog.title}
         className="w-full h-48 object-cover"
       />

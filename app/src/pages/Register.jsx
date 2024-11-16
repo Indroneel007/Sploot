@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { API_URL } from "../constants";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -20,7 +21,7 @@ function Register() {
 
     try {
       // Make API request to the backend
-      const response = await axios.post("http://localhost:5000/api/auth/register", {
+      const response = await axios.post(`${API_URL}/api/auth/register`, {
         username,
         email,
         password,
